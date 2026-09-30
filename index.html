@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Last Swing</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         LOADING SCREEN
+    ====================================================== -->
+
+    <section id="loadingScreen" class="screen active">
+
+        <div class="loading-web"></div>
+
+        <div class="loading-content">
+
+            <div class="spider-symbol">
+                <div class="spider-body"></div>
+                <div class="spider-leg leg1"></div>
+                <div class="spider-leg leg2"></div>
+                <div class="spider-leg leg3"></div>
+                <div class="spider-leg leg4"></div>
+            </div>
+
+            <p class="loading-small">
+                FRIENDLY NEIGHBORHOOD SYSTEM
+            </p>
+
+            <h1>THE LAST SWING</h1>
+
+            <div class="loading-line"></div>
+
+            <div class="loading-bar-container">
+                <div id="loadingBar"></div>
+            </div>
+
+            <p id="loadingText">
+                Initializing...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OPENING
+    ====================================================== -->
+
+    <section id="opening" class="screen">
+
+        <div class="comic-dots"></div>
+        <div class="city-background"></div>
+
+        <div class="moon"></div>
+
+        <div class="opening-web web-top-left"></div>
+        <div class="opening-web web-top-right"></div>
+
+        <div class="opening-content">
+
+            <div class="location-tag">
+                NEW YORK — 11:48 PM
+            </div>
+
+            <div class="spider-emblem">
+                <span>🕷</span>
+            </div>
+
+            <h1>
+                THE LAST
+                <span>SWING</span>
+            </h1>
+
+            <div class="comic-line"></div>
+
+            <p class="opening-text">
+                The city was quiet.
+                <br>
+                Almost too quiet.
+            </p>
+
+            <p class="opening-subtext">
+                Somewhere between the rooftops,
+                someone was making trouble.
+            </p>
+
+            <button id="startBtn" class="comic-button">
+                START THE STORY
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SPIDER-SENSE CORNER
+         Shared by the playable stages
+    ====================================================== -->
+
+    <div id="spiderSense" class="spider-sense">
+
+        <div class="sense-header">
+
+            <span class="sense-icon">🕷</span>
+
+            <span>
+                SPIDER-SENSE
+            </span>
+
+        </div>
+
+        <div class="sense-divider"></div>
+
+        <p id="senseStatus">
+            SYSTEM READY
+        </p>
+
+        <p id="senseInstruction">
+            Stay alert.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         STAGE 1 — STREET ENCOUNTER
+    ====================================================== -->
+
+    <section id="level1" class="screen game-screen">
+
+        <div class="comic-dots"></div>
+
+        <div class="stage-header">
+
+            <span class="chapter-number">
+                CHAPTER 01
+            </span>
+
+            <h2>
+                THE ENCOUNTER
+            </h2>
+
+        </div>
+
+
+        <div class="story-box">
+
+            <p>
+                A figure suddenly steps out of the shadows.
+            </p>
+
+            <p>
+                A street-level criminal.
+                Not exactly having a great night.
+            </p>
+
+            <p>
+                Neither is Spider-Man.
+            </p>
+
+        </div>
+
+
+        <div class="encounter-area">
+
+            <div class="spiderman-character player-character">
+
+                <div class="hero-head"></div>
+                <div class="hero-body"></div>
+                <div class="hero-arm hero-arm-left"></div>
+                <div class="hero-arm hero-arm-right"></div>
+                <div class="hero-leg hero-leg-left"></div>
+                <div class="hero-leg hero-leg-right"></div>
+
+            </div>
+
+
+            <div class="street-villain villain-character">
+
+                <div class="villain-head"></div>
+                <div class="villain-body"></div>
+                <div class="villain-arm villain-arm-left"></div>
+                <div class="villain-arm villain-arm-right"></div>
+
+            </div>
+
+
+            <div id="actionEffect" class="action-effect">
+            </div>
+
+        </div>
+
+
+        <div class="game-instruction">
+
+            <span class="instruction-label">
+                SPIDER-SENSE
+            </span>
+
+            <p id="level1Instruction">
+                Wait for the instruction.
+            </p>
+
+        </div>
+
+
+        <div class="action-buttons">
+
+            <button class="action-btn" data-action="web">
+                🕸 WEB
+            </button>
+
+            <button class="action-btn" data-action="attack">
+                ATTACK
+            </button>
+
+            <button class="action-btn" data-action="dodge">
+                DODGE
+            </button>
+
+        </div>
+
+
+        <p id="level1Message" class="game-message">
+            Spider-Man is ready.
+        </p>
+
+
+        <button id="level1Next" class="next-button" disabled>
+            CONTINUE →
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         STAGE 2 — ROOFTOP CHASE
+    ====================================================== -->
+
+    <section id="level2" class="screen game-screen">
+
+        <div class="comic-dots"></div>
+
+        <div class="stage-header">
+
+            <span class="chapter-number">
+                CHAPTER 02
+            </span>
+
+            <h2>
+                THE ROOFTOP CHASE
+            </h2>
+
+        </div>
+
+
+        <div class="story-box">
+
+            <p>
+                The villain breaks away.
+            </p>
+
+            <p>
+                Spider-Man launches himself onto
+                the rooftops.
+            </p>
+
+            <p>
+                Time to catch him.
+            </p>
+
+        </div>
+
+
+        <div id="rooftopGame" class="rooftop-game">
+
+            <div class="skyline"></div>
+
+            <div class="building building-1">
+                <div class="roof"></div>
+                <button class="roof-target" data-roof="1">
+                    ROOFTOP 1
+                </button>
+            </div>
+
+            <div class="building building-2">
+                <div class="roof"></div>
+                <button class="roof-target" data-roof="2">
+                    ROOFTOP 2
+                </button>
+            </div>
+
+            <div class="building building-3">
+                <div class="roof"></div>
+                <button class="roof-target" data-roof="3">
+                    ROOFTOP 3
+                </button>
+            </div>
+
+            <div class="building building-4">
+                <div class="roof"></div>
+                <button class="roof-target" data-roof="4">
+                    ROOFTOP 4
+                </button>
+            </div>
+
+
+            <div id="swingingSpiderman" class="swinging-spiderman">
+
+                <div class="hero-head"></div>
+                <div class="hero-body"></div>
+
+            </div>
+
+
+            <div id="chasingVillain" class="chasing-villain">
+
+                <div class="villain-head"></div>
+                <div class="villain-body"></div>
+
+            </div>
+
+
+            <div id="swingWeb" class="swing-web">
+            </div>
+
+        </div>
+
+
+        <div class="game-instruction">
+
+            <span class="instruction-label">
+                SPIDER-SENSE
+            </span>
+
+            <p id="level2Instruction">
+                Find the villain's next rooftop.
+            </p>
+
+        </div>
+
+
+        <p id="chaseMessage" class="game-message">
+            The chase has begun.
+        </p>
+
+
+        <div class="progress-display">
+
+            <span>
+                ROOFTOPS REACHED
+            </span>
+
+            <strong id="chaseProgress">
+                0 / 3
+            </strong>
+
+        </div>
+
+
+        <button id="level2Next" class="next-button" disabled>
+            CONTINUE →
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         STAGE 3 — WEB TRAP
+    ====================================================== -->
+
+    <section id="level3" class="screen game-screen">
+
+        <div class="comic-dots"></div>
+
+        <div class="stage-header">
+
+            <span class="chapter-number">
+                CHAPTER 03
+            </span>
+
+            <h2>
+                THE WEB TRAP
+            </h2>
+
+        </div>
+
+
+        <div class="story-box">
+
+            <p>
+                The villain is fast.
+            </p>
+
+            <p>
+                But Spider-Man has one advantage.
+            </p>
+
+            <p class="highlight-text">
+                Web shooters.
+            </p>
+
+        </div>
+
+
+        <div id="webTrapGame" class="web-trap-game">
+
+            <div class="trap-city"></div>
+
+            <div id="movingVillain" class="moving-villain">
+
+                <div class="villain-head"></div>
+                <div class="villain-body"></div>
+
+            </div>
+
+
+            <div id="aimReticle" class="aim-reticle">
+
+                <span></span>
+
+            </div>
+
+
+            <div id="webProjectile" class="web-projectile">
+            </div>
+
+
+            <div id="webLine1" class="web-lock-line">
+            </div>
+
+            <div id="webLine2" class="web-lock-line">
+            </div>
+
+            <div id="webLine3" class="web-lock-line">
+            </div>
+
+
+            <div id="webLock" class="web-lock">
+
+                <div class="web-circle"></div>
+                <div class="web-circle"></div>
+                <div class="web-circle"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="game-instruction">
+
+            <span class="instruction-label">
+                SPIDER-SENSE
+            </span>
+
+            <p id="level3Instruction">
+                Aim at the moving villain.
+            </p>
+
+        </div>
+
+
+        <div class="aim-help">
+
+            <span>
+                🎯
+            </span>
+
+            <p>
+                Move the aim and click when the
+                villain is in range.
+            </p>
+
+        </div>
+
+
+        <p id="webMessage" class="game-message">
+            Target moving.
+        </p>
+
+
+        <div class="progress-display">
+
+            <span>
+                WEB HITS
+            </span>
+
+            <strong id="webProgress">
+                0 / 3
+            </strong>
+
+        </div>
+
+
+        <button id="level3Next" class="next-button" disabled>
+            CONTINUE →
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         STAGE 4 — SPIDER-SENSE
+    ====================================================== -->
+
+    <section id="level4" class="screen game-screen">
+
+        <div class="comic-dots"></div>
+
+        <div class="stage-header">
+
+            <span class="chapter-number">
+                CHAPTER 04
+            </span>
+
+            <h2>
+                SPIDER-SENSE
+            </h2>
+
+        </div>
+
+
+        <div class="story-box">
+
+            <p>
+                Everything suddenly goes quiet.
+            </p>
+
+            <p>
+                Spider-Man closes his eyes.
+            </p>
+
+            <p class="highlight-text">
+                Something is wrong.
+            </p>
+
+        </div>
+
+
+        <div id="spiderSenseGame" class="spider-sense-game">
+
+            <div class="sense-radar"></div>
+
+            <div class="sense-pulse pulse-1"></div>
+
+            <div class="sense-pulse pulse-2"></div>
+
+            <button class="sense-target target-1" data-threat="false">
+                ?
+            </button>
+
+            <button class="sense-target target-2" data-threat="false">
+                ?
+            </button>
+
+            <button class="sense-target target-3" data-threat="true">
+                ?
+            </button>
+
+            <button class="sense-target target-4" data-threat="false">
+                ?
+            </button>
+
+            <button class="sense-target target-5" data-threat="false">
+                ?
+            </button>
+
+            <div id="senseFlash" class="sense-flash">
+            </div>
+
+        </div>
+
+
+        <div class="game-instruction">
+
+            <span class="instruction-label">
+                SPIDER-SENSE
+            </span>
+
+            <p id="level4Instruction">
+                Find the source of the danger.
+            </p>
+
+        </div>
+
+
+        <p id="senseGameMessage" class="game-message">
+            Listen carefully...
+        </p>
+
+
+        <button id="level4Next" class="next-button" disabled>
+            CONTINUE →
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         STAGE 5 — FINAL BATTLE
+    ====================================================== -->
+
+    <section id="level5" class="screen game-screen final-battle-screen">
+
+        <div class="comic-dots"></div>
+
+        <div class="stage-header">
+
+            <span class="chapter-number">
+                FINAL CHAPTER
+            </span>
+
+            <h2>
+                THE FINAL FIGHT
+            </h2>
+
+        </div>
+
+
+        <div class="story-box">
+
+            <p>
+                There is nowhere left to run.
+            </p>
+
+            <p>
+                Spider-Man faces the villain
+                one last time.
+            </p>
+
+            <p class="highlight-text">
+                Five hits. That's all it takes.
+            </p>
+
+        </div>
+
+
+        <!-- BOSS HEALTH -->
+
+        <div class="boss-status">
+
+            <div class="boss-name">
+                STREET VILLAIN
+            </div>
+
+            <div class="health-label">
+                <span>VILLAIN</span>
+
+                <span id="bossHealthText">
+                    5 / 5
+                </span>
+            </div>
+
+            <div class="health-bar">
+
+                <div id="bossHealthFill" class="health-fill">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BATTLE ARENA -->
+
+        <div id="bossBattle" class="boss-battle">
+
+            <div class="battle-city"></div>
+
+            <div id="battleSpiderman" class="battle-spiderman">
+
+                <div class="hero-head"></div>
+                <div class="hero-body"></div>
+                <div class="hero-arm hero-arm-left"></div>
+                <div class="hero-arm hero-arm-right"></div>
+
+            </div>
+
+
+            <div id="finalVillain" class="final-villain">
+
+                <div class="villain-head"></div>
+                <div class="villain-body"></div>
+                <div class="villain-arm villain-arm-left"></div>
+                <div class="villain-arm villain-arm-right"></div>
+
+            </div>
+
+
+            <div id="battleImpact" class="battle-impact">
+            </div>
+
+
+            <div id="bossDodgeEffect" class="boss-dodge-effect">
+            </div>
+
+
+            <div id="bossAttackEffect" class="boss-attack-effect">
+            </div>
+
+        </div>
+
+
+        <!-- BATTLE INSTRUCTION -->
+
+        <div class="game-instruction battle-instruction">
+
+            <span class="instruction-label">
+                SPIDER-SENSE
+            </span>
+
+            <p id="battleInstruction">
+                Wait for an opening.
+            </p>
+
+        </div>
+
+
+        <!-- ONLY PLAYER ACTION -->
+
+        <button id="attackBossBtn" class="battle-attack-button">
+            <span class="attack-icon">
+                ✦
+            </span>
+
+            ATTACK
+        </button>
+
+
+        <p id="battleMessage" class="game-message">
+            The villain is watching you.
+        </p>
+
+
+        <div class="battle-progress">
+
+            <span>
+                DIRECT HITS
+            </span>
+
+            <strong id="directHits">
+                0 / 5
+            </strong>
+
+        </div>
+
+
+        <!-- VICTORY -->
+
+        <div id="victoryMessage" class="victory-message">
+
+            <div class="victory-web"></div>
+
+            <span class="victory-icon">
+                🕷
+            </span>
+
+            <h3>
+                TARGET SECURED
+            </h3>
+
+            <p>
+                The city is safe.
+            </p>
+
+        </div>
+
+
+        <button id="finalContinue" class="next-button" disabled>
+            SEE WHAT'S NEXT →
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL SCENE — APOLOGY
+         Same Spider-Man / comic theme
+    ====================================================== -->
+
+    <section id="finalScene" class="screen final-scene">
+
+        <div class="final-comic-dots"></div>
+
+        <div class="final-city"></div>
+
+        <div class="final-web web-final-left"></div>
+        <div class="final-web web-final-right"></div>
+
+
+        <div class="final-content">
+
+            <div class="final-emblem">
+
+                <div class="final-spider">
+                    🕷
+                </div>
+
+            </div>
+
+
+            <div class="final-location">
+                NEW YORK — 11:59 PM
+            </div>
+
+
+            <div class="final-divider"></div>
+
+
+            <div class="final-story">
+
+                <p class="final-story-line">
+                    The city is quiet again.
+                </p>
+
+                <p class="final-story-line">
+                    The villain is defeated.
+                </p>
+
+                <p class="final-story-line">
+                    Spider-Man finally gets a moment to breathe.
+                </p>
+
+            </div>
+
+
+            <!-- SAME CONTENT AS REQUESTED -->
+
+            <div class="sorry-message">
+
+                <p>
+                    Hey.
+                </p>
+
+                <p>
+                    I know you're mad at me.
+                </p>
+
+                <p>
+                    I'm genuinely sorry. ❤️
+                </p>
+
+                <p>
+                    I hope this little adventure at least
+                    made you smile a little.
+                </p>
+
+                <p>
+                    That's all.
+                </p>
+
+            </div>
+
+
+            <div class="signature">
+                — Your friendly neighborhood 🚗✅
+            </div>
+
+
+            <div class="final-web-divider">
+
+                <span></span>
+                <div class="tiny-spider">
+                    🕷
+                </div>
+                <span></span>
+
+            </div>
+
+
+            <div class="final-ending">
+
+                <p>
+                    One last thing is waiting for you
+                    outside this website.
+                </p>
+
+                <p class="message-hint">
+                    Check your messages.
+                </p>
+
+            </div>
+
+
+            <div class="final-swing">
+
+                <div class="swing-line"></div>
+
+                <div class="swinging-hero">
+                    <div class="hero-head"></div>
+                    <div class="hero-body"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SMALL GLOBAL POPUP
+         Used when a new mechanic needs explanation
+    ====================================================== -->
+
+    <div id="instructionPopup" class="instruction-popup">
+
+        <div class="popup-card">
+
+            <div class="popup-spider">
+                🕷
+            </div>
+
+            <h3 id="popupTitle">
+                SPIDER-SENSE
+            </h3>
+
+            <p id="popupText">
+                Something needs your attention.
+            </p>
+
+            <button id="popupClose" class="comic-button">
+                GOT IT
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         COMIC EFFECT
+    ====================================================== -->
+
+    <div id="comicEffect" class="comic-effect">
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

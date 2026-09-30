@@ -1,0 +1,2600 @@
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: #05070d;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+
+/* =========================================================
+   COMMON SCREEN
+========================================================= */
+
+.screen {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.screen.active {
+    display: flex;
+}
+
+
+/* =========================================================
+   COMIC DOTS
+========================================================= */
+
+.comic-dots,
+.final-comic-dots {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px);
+
+    background-size: 12px 12px;
+    opacity: 0.25;
+}
+
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+#loadingScreen {
+    background:
+        radial-gradient(circle at center,
+            #171c2b 0%,
+            #080b13 45%,
+            #020308 100%);
+}
+
+.loading-web {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(circle,
+            transparent 0 55px,
+            rgba(255, 255, 255, 0.07) 57px 59px);
+
+    opacity: 0.4;
+    animation: webRotate 25s linear infinite;
+}
+
+.loading-web::before,
+.loading-web::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 14deg,
+            rgba(255, 255, 255, 0.05) 15deg 16deg);
+
+    border-radius: 50%;
+}
+
+.loading-content {
+    position: relative;
+    z-index: 2;
+    width: min(90%, 650px);
+    text-align: center;
+}
+
+.spider-symbol {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 25px;
+    animation: spiderFloat 2.5s ease-in-out infinite;
+}
+
+.spider-body {
+    position: absolute;
+    width: 28px;
+    height: 48px;
+    left: 36px;
+    top: 24px;
+
+    background: #d71920;
+    border-radius: 50% 50% 45% 45%;
+
+    box-shadow:
+        0 0 20px rgba(215, 25, 32, 0.7);
+}
+
+.spider-symbol::before {
+    content: "";
+    position: absolute;
+    width: 13px;
+    height: 20px;
+    left: 43px;
+    top: 10px;
+
+    background: #d71920;
+    border-radius: 50%;
+}
+
+.spider-leg {
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background: #d71920;
+    transform-origin: right center;
+    left: 0;
+    top: 45px;
+}
+
+.leg1 {
+    transform: rotate(25deg);
+}
+
+.leg2 {
+    transform: rotate(55deg);
+}
+
+.leg3 {
+    left: 60px;
+    transform-origin: left center;
+    transform: rotate(-25deg);
+}
+
+.leg4 {
+    left: 60px;
+    transform-origin: left center;
+    transform: rotate(-55deg);
+}
+
+.loading-small {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #aeb5c5;
+    margin-bottom: 12px;
+}
+
+.loading-content h1 {
+    font-size: clamp(35px, 7vw, 70px);
+    letter-spacing: 7px;
+    font-weight: 900;
+    text-shadow:
+        4px 4px 0 #d71920,
+        0 0 25px rgba(215, 25, 32, 0.35);
+}
+
+.loading-line {
+    width: 180px;
+    height: 3px;
+    background: #d71920;
+    margin: 22px auto;
+    box-shadow: 0 0 15px rgba(215, 25, 32, 0.7);
+}
+
+.loading-bar-container {
+    width: min(400px, 80%);
+    height: 5px;
+    margin: 0 auto 15px;
+
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+}
+
+#loadingBar {
+    width: 0%;
+    height: 100%;
+    background: #d71920;
+    box-shadow: 0 0 15px #d71920;
+}
+
+#loadingText {
+    color: #8e96a8;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+@keyframes webRotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spiderFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* =========================================================
+   OPENING
+========================================================= */
+
+#opening {
+    background:
+        linear-gradient(to bottom,
+            #090d1b 0%,
+            #101a35 55%,
+            #05070d 100%);
+}
+
+.city-background,
+.final-city,
+.battle-city,
+.trap-city {
+    position: absolute;
+    inset: auto 0 0;
+
+    height: 45%;
+
+    background:
+        linear-gradient(to top,
+            #020308,
+            #080b14);
+
+    clip-path: polygon(0 35%,
+            4% 35%,
+            4% 15%,
+            10% 15%,
+            10% 42%,
+            16% 42%,
+            16% 5%,
+            22% 5%,
+            22% 32%,
+            28% 32%,
+            28% 20%,
+            34% 20%,
+            34% 47%,
+            40% 47%,
+            40% 10%,
+            47% 10%,
+            47% 38%,
+            54% 38%,
+            54% 0,
+            61% 0,
+            61% 30%,
+            68% 30%,
+            68% 12%,
+            74% 12%,
+            74% 45%,
+            81% 45%,
+            81% 8%,
+            88% 8%,
+            88% 27%,
+            94% 27%,
+            94% 2%,
+            100% 2%,
+            100% 100%,
+            0 100%);
+}
+
+.moon {
+    position: absolute;
+    top: 11%;
+    right: 13%;
+
+    width: 95px;
+    height: 95px;
+
+    border-radius: 50%;
+    background: #f1f1dc;
+
+    box-shadow:
+        0 0 50px rgba(255, 255, 220, 0.25);
+}
+
+.opening-content {
+    position: relative;
+    z-index: 3;
+
+    width: min(90%, 750px);
+    text-align: center;
+}
+
+.location-tag,
+.final-location {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #9ca4b8;
+    margin-bottom: 20px;
+}
+
+.spider-emblem {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+
+    border: 2px solid #d71920;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 0 30px rgba(215, 25, 32, 0.3);
+}
+
+.spider-emblem span {
+    font-size: 36px;
+}
+
+.opening-content h1 {
+    font-size: clamp(48px, 9vw, 100px);
+    line-height: 0.9;
+    font-weight: 900;
+    letter-spacing: -2px;
+
+    text-shadow:
+        5px 5px 0 #d71920;
+}
+
+.opening-content h1 span {
+    display: block;
+    color: #2367c8;
+
+    text-shadow:
+        5px 5px 0 #d71920;
+}
+
+.comic-line {
+    width: 130px;
+    height: 4px;
+    margin: 28px auto;
+
+    background: #ffffff;
+}
+
+.opening-text {
+    font-size: clamp(20px, 4vw, 30px);
+    line-height: 1.4;
+}
+
+.opening-subtext {
+    margin: 15px auto 30px;
+    color: #a9b0bf;
+    font-size: 14px;
+}
+
+.comic-button,
+.next-button {
+    position: relative;
+
+    min-height: 48px;
+    padding: 13px 28px;
+
+    background: #d71920;
+    color: white;
+
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    border: 2px solid #ffffff;
+
+    box-shadow:
+        5px 5px 0 #05070d;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+}
+
+.comic-button:hover,
+.next-button:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+
+    box-shadow:
+        8px 8px 0 #05070d;
+
+    background: #ef2028;
+}
+
+.opening-web {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    opacity: 0.12;
+
+    background:
+        repeating-radial-gradient(circle,
+            transparent 0 25px,
+            white 27px 29px);
+
+    border-radius: 50%;
+}
+
+.web-top-left {
+    top: -80px;
+    left: -80px;
+}
+
+.web-top-right {
+    top: -80px;
+    right: -80px;
+}
+
+
+/* =========================================================
+   STAGE COMMON
+========================================================= */
+
+.game-screen {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    min-height: 100vh;
+    padding: 55px 20px 40px;
+
+    background:
+        radial-gradient(circle at 50% 10%,
+            #172039,
+            #080b14 55%,
+            #03050a);
+}
+
+.stage-header {
+    position: relative;
+    z-index: 5;
+
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.chapter-number {
+    display: block;
+
+    color: #d71920;
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 900;
+
+    margin-bottom: 8px;
+}
+
+.stage-header h2 {
+    font-size: clamp(30px, 6vw, 55px);
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        3px 3px 0 #2367c8;
+}
+
+.story-box {
+    position: relative;
+    z-index: 5;
+
+    width: min(92%, 700px);
+
+    padding: 16px 20px;
+    margin-bottom: 18px;
+
+    background: rgba(5, 7, 13, 0.8);
+
+    border-left: 4px solid #d71920;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+
+    text-align: center;
+
+    line-height: 1.5;
+    color: #d7dbe4;
+}
+
+.story-box p+p {
+    margin-top: 5px;
+}
+
+.highlight-text {
+    color: #ffffff;
+    font-weight: 900;
+}
+
+.game-instruction {
+    position: relative;
+    z-index: 10;
+
+    width: min(92%, 650px);
+
+    margin: 12px auto;
+
+    padding: 10px 15px;
+
+    background: rgba(18, 25, 43, 0.95);
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-left: 4px solid #2367c8;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.instruction-label {
+    display: block;
+
+    color: #d71920;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 900;
+
+    margin-bottom: 5px;
+}
+
+.game-instruction p {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.game-message {
+    position: relative;
+    z-index: 10;
+
+    min-height: 25px;
+
+    margin: 8px 0;
+
+    color: #aeb7ca;
+
+    font-size: 14px;
+    text-align: center;
+}
+
+.progress-display,
+.battle-progress {
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #8992a5;
+}
+
+.progress-display strong,
+.battle-progress strong {
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.next-button {
+    margin-top: 15px;
+}
+
+.next-button:disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SPIDER-SENSE CORNER
+========================================================= */
+
+.spider-sense {
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    width: 205px;
+
+    padding: 12px 14px;
+
+    background:
+        linear-gradient(135deg,
+            rgba(11, 17, 31, 0.97),
+            rgba(5, 7, 13, 0.97));
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-left: 4px solid #d71920;
+
+    z-index: 100;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.5);
+
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s,
+        transform 0.3s;
+}
+
+.sense-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.sense-icon {
+    font-size: 18px;
+}
+
+.sense-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 8px 0;
+
+    background: rgba(255, 255, 255, 0.12);
+}
+
+#senseStatus {
+    font-size: 10px;
+    color: #d71920;
+    letter-spacing: 1px;
+    font-weight: 900;
+}
+
+#senseInstruction {
+    margin-top: 4px;
+
+    font-size: 11px;
+    line-height: 1.4;
+
+    color: #b7bfce;
+}
+
+.spider-sense.active-alert {
+    border-left-color: #ef2028;
+
+    box-shadow:
+        0 0 25px rgba(215, 25, 32, 0.35),
+        0 10px 35px rgba(0, 0, 0, 0.5);
+
+    animation: senseAlert 0.8s ease-in-out infinite;
+}
+
+@keyframes senseAlert {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-4px);
+    }
+}
+
+
+/* =========================================================
+   STAGE 1 — ENCOUNTER
+========================================================= */
+
+.encounter-area {
+    position: relative;
+
+    width: min(92%, 850px);
+    height: 260px;
+
+    margin: 5px auto 10px;
+
+    background:
+        linear-gradient(to top,
+            #06080e 0 20%,
+            transparent 20%);
+}
+
+.encounter-area::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20%;
+
+    height: 2px;
+
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.spiderman-character,
+.street-villain {
+    position: absolute;
+
+    bottom: 21%;
+
+    width: 70px;
+    height: 120px;
+}
+
+.spiderman-character {
+    left: 20%;
+}
+
+.street-villain {
+    right: 20%;
+}
+
+.hero-head,
+.villain-head {
+    position: absolute;
+
+    width: 42px;
+    height: 46px;
+
+    top: 0;
+    left: 14px;
+
+    border-radius: 45% 45% 48% 48%;
+}
+
+.hero-head {
+    background:
+        linear-gradient(135deg,
+            #d71920 0 45%,
+            #171b25 46% 100%);
+
+    border: 2px solid #05070d;
+}
+
+.villain-head {
+    background: #303642;
+    border: 2px solid #05070d;
+}
+
+.hero-body,
+.villain-body {
+    position: absolute;
+
+    width: 52px;
+    height: 65px;
+
+    top: 43px;
+    left: 9px;
+
+    border-radius: 15px 15px 8px 8px;
+}
+
+.hero-body {
+    background:
+        linear-gradient(90deg,
+            #1c4e99 0 45%,
+            #d71920 46% 100%);
+
+    border: 2px solid #05070d;
+}
+
+.villain-body {
+    background:
+        linear-gradient(90deg,
+            #262b35,
+            #11141b);
+
+    border: 2px solid #05070d;
+}
+
+.hero-arm,
+.villain-arm {
+    position: absolute;
+
+    width: 15px;
+    height: 55px;
+
+    top: 48px;
+
+    border-radius: 10px;
+}
+
+.hero-arm {
+    background: #d71920;
+}
+
+.villain-arm {
+    background: #282e39;
+}
+
+.hero-arm-left,
+.villain-arm-left {
+    left: -3px;
+    transform: rotate(18deg);
+}
+
+.hero-arm-right,
+.villain-arm-right {
+    right: -3px;
+    transform: rotate(-18deg);
+}
+
+.hero-leg,
+.villain-leg {
+    position: absolute;
+
+    width: 17px;
+    height: 50px;
+
+    top: 102px;
+
+    background: #182d58;
+}
+
+.hero-leg-left {
+    left: 14px;
+    transform: rotate(4deg);
+}
+
+.hero-leg-right {
+    right: 14px;
+    transform: rotate(-4deg);
+}
+
+.action-buttons {
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 8px;
+}
+
+.action-btn {
+    min-width: 115px;
+    min-height: 45px;
+
+    padding: 10px 18px;
+
+    background: #121827;
+    color: white;
+
+    border: 2px solid #2c3b58;
+
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.action-btn:hover,
+.action-btn.highlight-action {
+    border-color: #d71920;
+
+    box-shadow:
+        0 0 20px rgba(215, 25, 32, 0.45);
+
+    transform: translateY(-3px);
+}
+
+.action-effect {
+    position: absolute;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.action-effect.web-effect {
+    width: 300px;
+    height: 3px;
+
+    left: 25%;
+    top: 45%;
+
+    background: white;
+
+    box-shadow:
+        0 0 10px white,
+        0 0 20px #2367c8;
+
+    transform: rotate(-10deg);
+
+    animation: shootWeb 0.4s ease-out;
+}
+
+@keyframes shootWeb {
+    from {
+        width: 0;
+        opacity: 1;
+    }
+
+    to {
+        width: 300px;
+        opacity: 0;
+    }
+}
+
+.action-effect.attack-effect {
+    opacity: 1;
+
+    width: 80px;
+    height: 80px;
+
+    right: 22%;
+    top: 25%;
+
+    border: 5px solid white;
+    border-radius: 50%;
+
+    animation: impact 0.35s ease-out forwards;
+}
+
+@keyframes impact {
+    from {
+        transform: scale(0.3);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.action-effect.dodge-effect {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   STAGE 2 — ROOFTOPS
+========================================================= */
+
+.rooftop-game {
+    position: relative;
+
+    width: min(95%, 900px);
+    height: 300px;
+
+    margin: 5px auto 8px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(to bottom,
+            #111a35,
+            #070a13);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skyline {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(to top,
+            #03050a 0 30%,
+            transparent 30%);
+}
+
+.building {
+    position: absolute;
+    bottom: 30px;
+
+    width: 18%;
+    height: 45%;
+
+    background:
+        repeating-linear-gradient(to bottom,
+            #161b26 0 18px,
+            #202737 19px 21px);
+
+    border: 1px solid #303849;
+}
+
+.building-1 {
+    left: 2%;
+    height: 42%;
+}
+
+.building-2 {
+    left: 27%;
+    height: 65%;
+}
+
+.building-3 {
+    left: 52%;
+    height: 52%;
+}
+
+.building-4 {
+    right: 3%;
+    height: 72%;
+}
+
+.roof {
+    position: absolute;
+
+    top: -7px;
+    left: -5px;
+    right: -5px;
+
+    height: 8px;
+
+    background: #d71920;
+}
+
+.roof-target {
+    position: absolute;
+
+    bottom: 10px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 85%;
+
+    padding: 7px 3px;
+
+    background: rgba(5, 7, 13, 0.8);
+    color: #b8c0d0;
+
+    border: 1px solid #34415a;
+
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.roof-target:hover,
+.roof-target.highlight-roof {
+    color: white;
+    border-color: #d71920;
+
+    box-shadow:
+        0 0 20px rgba(215, 25, 32, 0.4);
+
+    animation: roofPulse 0.7s ease-in-out infinite;
+}
+
+@keyframes roofPulse {
+    50% {
+        transform: translateX(-50%) scale(1.04);
+    }
+}
+
+.swinging-spiderman,
+.chasing-villain {
+    position: absolute;
+
+    z-index: 10;
+
+    width: 45px;
+    height: 75px;
+
+    transition:
+        left 0.6s ease,
+        top 0.6s ease,
+        transform 0.3s;
+}
+
+.swinging-spiderman {
+    left: 12%;
+    bottom: 38%;
+}
+
+.chasing-villain {
+    right: 12%;
+    bottom: 50%;
+}
+
+.swinging-spiderman .hero-head,
+.chasing-villain .villain-head {
+    width: 27px;
+    height: 29px;
+
+    left: 9px;
+}
+
+.swinging-spiderman .hero-body,
+.chasing-villain .villain-body {
+    width: 34px;
+    height: 42px;
+
+    left: 5px;
+    top: 28px;
+}
+
+.swing-web {
+    position: absolute;
+
+    z-index: 8;
+
+    width: 2px;
+    height: 100px;
+
+    background: white;
+
+    transform-origin: top center;
+
+    opacity: 0;
+}
+
+
+/* =========================================================
+   STAGE 3 — WEB TRAP
+========================================================= */
+
+.web-trap-game {
+    position: relative;
+
+    width: min(94%, 900px);
+    height: 330px;
+
+    margin: 5px auto;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    background:
+        radial-gradient(circle at center,
+            #18233e,
+            #070a12);
+}
+
+.moving-villain {
+    position: absolute;
+
+    width: 58px;
+    height: 100px;
+
+    z-index: 10;
+
+    transition:
+        left 0.15s linear,
+        top 0.15s linear;
+}
+
+.moving-villain .villain-head {
+    width: 35px;
+    height: 38px;
+    left: 11px;
+}
+
+.moving-villain .villain-body {
+    width: 44px;
+    height: 54px;
+    left: 6px;
+    top: 37px;
+}
+
+.aim-reticle {
+    position: absolute;
+
+    z-index: 20;
+
+    width: 65px;
+    height: 65px;
+
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+
+    transition:
+        width 0.15s,
+        height 0.15s,
+        border-color 0.15s;
+}
+
+.aim-reticle::before,
+.aim-reticle::after {
+    content: "";
+
+    position: absolute;
+
+    background: white;
+}
+
+.aim-reticle::before {
+    width: 100%;
+    height: 1px;
+
+    top: 50%;
+    left: 0;
+}
+
+.aim-reticle::after {
+    height: 100%;
+    width: 1px;
+
+    left: 50%;
+    top: 0;
+}
+
+.aim-reticle span {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+    background: #d71920;
+}
+
+.aim-reticle.locked {
+    border-color: #d71920;
+
+    box-shadow:
+        0 0 25px rgba(215, 25, 32, 0.7);
+}
+
+.web-projectile {
+    position: absolute;
+
+    z-index: 25;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 15px white,
+        0 0 25px #2367c8;
+
+    opacity: 0;
+}
+
+.web-lock-line {
+    position: absolute;
+
+    z-index: 15;
+
+    height: 3px;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    transform-origin: left center;
+
+    opacity: 0;
+}
+
+.web-lock {
+    position: absolute;
+
+    z-index: 30;
+
+    width: 130px;
+    height: 130px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    opacity: 0;
+}
+
+.web-circle {
+    position: absolute;
+    inset: 0;
+
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+
+    animation: webLockRotate 2s linear infinite;
+}
+
+.web-circle:nth-child(2) {
+    transform: rotate(60deg) scale(0.75);
+}
+
+.web-circle:nth-child(3) {
+    transform: rotate(120deg) scale(0.5);
+}
+
+@keyframes webLockRotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.aim-help {
+    position: relative;
+    z-index: 10;
+
+    width: min(90%, 550px);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 9px 13px;
+
+    background: rgba(35, 103, 200, 0.1);
+
+    border: 1px solid rgba(35, 103, 200, 0.3);
+
+    color: #aeb9ce;
+
+    font-size: 11px;
+}
+
+.aim-help span {
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   STAGE 4 — SPIDER SENSE
+========================================================= */
+
+.spider-sense-game {
+    position: relative;
+
+    width: min(94%, 750px);
+    height: 330px;
+
+    margin: 5px auto 10px;
+
+    background:
+        radial-gradient(circle,
+            rgba(35, 103, 200, 0.16),
+            transparent 55%);
+
+    border: 1px solid rgba(35, 103, 200, 0.25);
+
+    overflow: hidden;
+}
+
+.sense-radar {
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    background:
+        repeating-radial-gradient(circle,
+            transparent 0 45px,
+            rgba(255, 255, 255, 0.06) 46px 47px);
+}
+
+.sense-pulse {
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(215, 25, 32, 0.25);
+
+    animation: sensePulse 2.5s linear infinite;
+}
+
+.pulse-2 {
+    animation-delay: 1.25s;
+}
+
+@keyframes sensePulse {
+    from {
+        width: 30px;
+        height: 30px;
+        opacity: 0.8;
+    }
+
+    to {
+        width: 400px;
+        height: 400px;
+        opacity: 0;
+    }
+}
+
+.sense-target {
+    position: absolute;
+
+    z-index: 5;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    background: #111827;
+    color: white;
+
+    border: 2px solid #33415c;
+
+    font-size: 20px;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.sense-target:hover {
+    transform: scale(1.12);
+
+    border-color: #2367c8;
+
+    box-shadow:
+        0 0 20px rgba(35, 103, 200, 0.5);
+}
+
+.target-1 {
+    left: 17%;
+    top: 25%;
+}
+
+.target-2 {
+    right: 18%;
+    top: 18%;
+}
+
+.target-3 {
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.target-4 {
+    left: 20%;
+    bottom: 18%;
+}
+
+.target-5 {
+    right: 17%;
+    bottom: 20%;
+}
+
+.sense-target.threat-found {
+    background: #d71920;
+
+    border-color: white;
+
+    box-shadow:
+        0 0 30px rgba(215, 25, 32, 0.8);
+
+    animation: threatFound 0.5s ease-in-out infinite;
+}
+
+@keyframes threatFound {
+    50% {
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
+.sense-flash {
+    position: absolute;
+    inset: 0;
+
+    background: white;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sense-flash.active {
+    animation: screenFlash 0.4s ease-out;
+}
+
+@keyframes screenFlash {
+    0% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   FINAL BATTLE
+========================================================= */
+
+.final-battle-screen {
+    background:
+        radial-gradient(circle at center,
+            #21121b,
+            #080a12 55%,
+            #020308);
+}
+
+.boss-status {
+    position: relative;
+    z-index: 20;
+
+    width: min(90%, 500px);
+
+    margin-bottom: 8px;
+}
+
+.boss-name {
+    text-align: center;
+
+    color: #d71920;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+
+    margin-bottom: 7px;
+}
+
+.health-label {
+    display: flex;
+    justify-content: space-between;
+
+    color: #9ba4b8;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+}
+
+#bossHealthText {
+    color: white;
+}
+
+.health-bar {
+    width: 100%;
+    height: 9px;
+
+    background: #171b25;
+
+    border: 1px solid #333b4c;
+}
+
+.health-fill {
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(90deg,
+            #d71920,
+            #ef3940);
+
+    box-shadow:
+        0 0 12px rgba(215, 25, 32, 0.5);
+
+    transition: width 0.35s ease;
+}
+
+.boss-battle {
+    position: relative;
+
+    width: min(95%, 850px);
+    height: 300px;
+
+    margin: 3px auto 8px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    background:
+        linear-gradient(to bottom,
+            #11152b,
+            #080a12);
+}
+
+.battle-city {
+    height: 100%;
+    opacity: 0.7;
+}
+
+.battle-spiderman,
+.final-villain {
+    position: absolute;
+
+    bottom: 22%;
+
+    width: 75px;
+    height: 125px;
+
+    z-index: 10;
+
+    transition:
+        transform 0.25s ease,
+        left 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.battle-spiderman {
+    left: 18%;
+}
+
+.final-villain {
+    right: 18%;
+}
+
+.battle-spiderman .hero-head,
+.final-villain .villain-head {
+    width: 45px;
+    height: 48px;
+
+    left: 15px;
+}
+
+.battle-spiderman .hero-body,
+.final-villain .villain-body {
+    width: 55px;
+    height: 68px;
+
+    left: 10px;
+    top: 45px;
+}
+
+.battle-spiderman .hero-arm,
+.final-villain .villain-arm {
+    top: 50px;
+}
+
+.battle-impact {
+    position: absolute;
+
+    z-index: 50;
+
+    width: 100px;
+    height: 100px;
+
+    border: 6px solid white;
+    border-radius: 50%;
+
+    opacity: 0;
+}
+
+.battle-impact.active {
+    animation: impact 0.35s ease-out;
+}
+
+.boss-dodge-effect {
+    position: absolute;
+
+    z-index: 30;
+
+    width: 150px;
+    height: 4px;
+
+    background: white;
+
+    opacity: 0;
+}
+
+.boss-attack-effect {
+    position: absolute;
+
+    z-index: 30;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle,
+            white,
+            rgba(215, 25, 32, 0.8),
+            transparent 70%);
+
+    opacity: 0;
+}
+
+.battle-attack-button {
+    position: relative;
+    z-index: 30;
+
+    width: 145px;
+    min-height: 52px;
+
+    padding: 12px 20px;
+
+    background: #d71920;
+    color: white;
+
+    border: 2px solid white;
+
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    box-shadow:
+        5px 5px 0 #05070d;
+
+    transition:
+        transform 0.15s,
+        box-shadow 0.15s;
+}
+
+.battle-attack-button:hover {
+    transform: translate(-2px, -2px);
+
+    box-shadow:
+        8px 8px 0 #05070d;
+}
+
+.battle-attack-button:active {
+    transform: translate(2px, 2px);
+
+    box-shadow:
+        2px 2px 0 #05070d;
+}
+
+.attack-icon {
+    margin-right: 5px;
+}
+
+.battle-instruction {
+    border-left-color: #d71920;
+}
+
+.victory-message {
+    position: absolute;
+
+    z-index: 60;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(90%, 400px);
+
+    padding: 25px;
+
+    text-align: center;
+
+    background:
+        rgba(5, 7, 13, 0.96);
+
+    border: 2px solid #d71920;
+
+    box-shadow:
+        0 0 50px rgba(215, 25, 32, 0.35);
+
+    display: none;
+}
+
+.victory-icon {
+    display: block;
+    font-size: 40px;
+    margin-bottom: 8px;
+}
+
+.victory-message h3 {
+    font-size: 25px;
+    letter-spacing: 3px;
+
+    color: #ffffff;
+
+    text-shadow:
+        2px 2px 0 #d71920;
+}
+
+.victory-message p {
+    margin-top: 8px;
+    color: #9da7ba;
+}
+
+.victory-web {
+    position: absolute;
+    inset: 5px;
+
+    pointer-events: none;
+
+    background:
+        repeating-radial-gradient(circle,
+            transparent 0 20px,
+            rgba(255, 255, 255, 0.04) 21px 22px);
+}
+
+
+/* =========================================================
+   FINAL APOLOGY SCENE
+========================================================= */
+
+.final-scene {
+    background:
+        linear-gradient(to bottom,
+            #090d1b,
+            #111b35 55%,
+            #03050a);
+
+    overflow: hidden;
+}
+
+.final-content {
+    position: relative;
+    z-index: 10;
+
+    width: min(92%, 700px);
+
+    text-align: center;
+
+    padding: 60px 20px 100px;
+}
+
+.final-emblem {
+    width: 72px;
+    height: 72px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    border: 2px solid #d71920;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 0 30px rgba(215, 25, 32, 0.25);
+}
+
+.final-spider {
+    font-size: 35px;
+}
+
+.final-location {
+    margin-bottom: 15px;
+}
+
+.final-divider {
+    width: 120px;
+    height: 3px;
+
+    margin: 0 auto 30px;
+
+    background: #d71920;
+}
+
+.final-story {
+    margin-bottom: 35px;
+}
+
+.final-story-line {
+    color: #8f98ab;
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+.sorry-message {
+    position: relative;
+
+    width: min(100%, 560px);
+
+    margin: 0 auto;
+
+    padding: 28px 25px;
+
+    background:
+        rgba(5, 7, 13, 0.78);
+
+    border-top: 2px solid #d71920;
+    border-bottom: 2px solid #2367c8;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.35);
+}
+
+.sorry-message::before,
+.sorry-message::after {
+    content: "";
+
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.sorry-message::before {
+    top: 8px;
+    left: 8px;
+
+    border-left: 1px solid;
+    border-top: 1px solid;
+}
+
+.sorry-message::after {
+    right: 8px;
+    bottom: 8px;
+
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.sorry-message p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #f0f2f7;
+}
+
+.sorry-message p+p {
+    margin-top: 8px;
+}
+
+.sorry-message p:nth-child(3) {
+    color: #ffffff;
+    font-weight: 900;
+}
+
+.signature {
+    margin-top: 20px;
+
+    color: #a7afc0;
+
+    font-size: 14px;
+    font-style: italic;
+}
+
+.final-web-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: min(90%, 450px);
+
+    margin: 30px auto;
+}
+
+.final-web-divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.3));
+}
+
+.final-web-divider span:last-child {
+    transform: rotate(180deg);
+}
+
+.tiny-spider {
+    font-size: 20px;
+
+    animation:
+        tinySpiderFloat 2s ease-in-out infinite;
+}
+
+@keyframes tinySpiderFloat {
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.final-ending {
+    padding: 15px;
+
+    color: #9fa8ba;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.message-hint {
+    color: #ffffff;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    margin-top: 8px;
+}
+
+.final-swing {
+    position: absolute;
+
+    right: -40px;
+    bottom: -80px;
+
+    width: 200px;
+    height: 300px;
+
+    pointer-events: none;
+}
+
+.swing-line {
+    position: absolute;
+
+    top: 0;
+    right: 70px;
+
+    width: 2px;
+    height: 240px;
+
+    background: rgba(255, 255, 255, 0.8);
+
+    transform: rotate(-15deg);
+    transform-origin: top;
+}
+
+.swinging-hero {
+    position: absolute;
+
+    right: 30px;
+    bottom: 30px;
+
+    width: 55px;
+    height: 90px;
+
+    transform: rotate(20deg);
+}
+
+.swinging-hero .hero-head {
+    width: 32px;
+    height: 35px;
+
+    left: 12px;
+}
+
+.swinging-hero .hero-body {
+    width: 40px;
+    height: 50px;
+
+    left: 7px;
+    top: 33px;
+}
+
+
+/* =========================================================
+   FINAL WEB DECORATION
+========================================================= */
+
+.final-web {
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(circle,
+            transparent 0 25px,
+            rgba(255, 255, 255, 0.06) 26px 28px);
+
+    opacity: 0.4;
+}
+
+.web-final-left {
+    top: -120px;
+    left: -100px;
+}
+
+.web-final-right {
+    top: -120px;
+    right: -100px;
+}
+
+
+/* =========================================================
+   INSTRUCTION POPUP
+========================================================= */
+
+.instruction-popup {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.72);
+
+    backdrop-filter: blur(4px);
+}
+
+.instruction-popup.show {
+    display: flex;
+
+    animation:
+        popupFade 0.25s ease-out;
+}
+
+.popup-card {
+    position: relative;
+
+    width: min(92%, 430px);
+
+    padding: 30px 25px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(145deg,
+            #121a2b,
+            #070a12);
+
+    border: 2px solid #d71920;
+
+    box-shadow:
+        8px 8px 0 #05070d,
+        0 0 40px rgba(215, 25, 32, 0.25);
+}
+
+.popup-spider {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.popup-card h3 {
+    font-size: 22px;
+    letter-spacing: 3px;
+
+    color: #ffffff;
+
+    text-shadow:
+        2px 2px 0 #d71920;
+}
+
+.popup-card p {
+    margin: 15px auto 20px;
+
+    color: #b4bdce;
+
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+@keyframes popupFade {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   COMIC EFFECT
+========================================================= */
+
+.comic-effect {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 900;
+
+    pointer-events: none;
+
+    opacity: 0;
+}
+
+.comic-effect.flash {
+    animation: comicFlash 0.3s ease-out;
+}
+
+@keyframes comicFlash {
+    0% {
+        background: rgba(255, 255, 255, 0.8);
+        opacity: 1;
+    }
+
+    100% {
+        background: transparent;
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .screen {
+        min-height: 100svh;
+    }
+
+    .loading-web {
+        width: 420px;
+        height: 420px;
+    }
+
+    .moon {
+        width: 65px;
+        height: 65px;
+        right: 8%;
+    }
+
+    .opening-content h1 {
+        letter-spacing: -1px;
+    }
+
+    .opening-text {
+        font-size: 19px;
+    }
+
+    .game-screen {
+        padding:
+            35px 12px 105px;
+    }
+
+    .stage-header {
+        margin-bottom: 12px;
+    }
+
+    .stage-header h2 {
+        font-size: 30px;
+    }
+
+    .story-box {
+        font-size: 13px;
+        padding: 12px 14px;
+    }
+
+    .spider-sense {
+        left: 12px;
+        right: 12px;
+        bottom: 10px;
+
+        width: auto;
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        padding: 8px 10px;
+    }
+
+    .sense-header {
+        flex-shrink: 0;
+    }
+
+    .sense-divider {
+        width: 1px;
+        height: 30px;
+
+        margin: 0;
+    }
+
+    #senseStatus {
+        white-space: nowrap;
+    }
+
+    #senseInstruction {
+        margin-top: 0;
+    }
+
+    .encounter-area {
+        height: 220px;
+    }
+
+    .spiderman-character {
+        left: 12%;
+    }
+
+    .street-villain {
+        right: 12%;
+    }
+
+    .action-buttons {
+        gap: 7px;
+    }
+
+    .action-btn {
+        min-width: 95px;
+        min-height: 44px;
+
+        padding: 8px 10px;
+
+        font-size: 12px;
+    }
+
+    .rooftop-game {
+        height: 260px;
+    }
+
+    .building {
+        width: 21%;
+    }
+
+    .roof-target {
+        font-size: 7px;
+    }
+
+    .web-trap-game {
+        height: 270px;
+    }
+
+    .aim-reticle {
+        width: 55px;
+        height: 55px;
+    }
+
+    .spider-sense-game {
+        height: 270px;
+    }
+
+    .sense-radar {
+        width: 220px;
+        height: 220px;
+    }
+
+    .target-1 {
+        left: 10%;
+    }
+
+    .target-2 {
+        right: 10%;
+    }
+
+    .target-4 {
+        left: 10%;
+    }
+
+    .target-5 {
+        right: 10%;
+    }
+
+    .boss-battle {
+        height: 260px;
+    }
+
+    .battle-spiderman {
+        left: 10%;
+    }
+
+    .final-villain {
+        right: 10%;
+    }
+
+    .battle-attack-button {
+        min-height: 50px;
+    }
+
+    .final-content {
+        padding:
+            45px 10px 80px;
+    }
+
+    .sorry-message p {
+        font-size: 15px;
+    }
+
+    .final-swing {
+        transform: scale(0.7);
+        transform-origin: bottom right;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .loading-content h1 {
+        font-size: 35px;
+    }
+
+    .location-tag,
+    .final-location {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .stage-header h2 {
+        font-size: 25px;
+    }
+
+    .story-box {
+        font-size: 12px;
+    }
+
+    .game-instruction {
+        padding: 8px 10px;
+    }
+
+    .game-instruction p {
+        font-size: 12px;
+    }
+
+    .encounter-area {
+        height: 190px;
+    }
+
+    .spiderman-character,
+    .street-villain {
+        transform: scale(0.85);
+    }
+
+    .rooftop-game {
+        height: 230px;
+    }
+
+    .web-trap-game {
+        height: 240px;
+    }
+
+    .spider-sense-game {
+        height: 240px;
+    }
+
+    .sense-target {
+        width: 44px;
+        height: 44px;
+    }
+
+    .boss-battle {
+        height: 230px;
+    }
+
+    .battle-spiderman,
+    .final-villain {
+        transform: scale(0.85);
+        transform-origin: bottom center;
+    }
+
+    .sorry-message {
+        padding: 22px 15px;
+    }
+
+    .sorry-message p {
+        font-size: 14px;
+    }
+
+    .final-ending {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+
+    .action-btn:hover,
+    .roof-target:hover,
+    .sense-target:hover,
+    .comic-button:hover,
+    .next-button:hover {
+        transform: none;
+    }
+
+    .action-btn:active,
+    .roof-target:active,
+    .sense-target:active {
+        transform: scale(0.95);
+    }
+
+    .battle-attack-button:active {
+        transform: scale(0.94);
+    }
+}
+
+
+/* =========================================================
+   LANDSCAPE MOBILE
+========================================================= */
+
+@media (max-height: 520px) and (orientation: landscape) {
+
+    .game-screen {
+        padding-top: 20px;
+        padding-bottom: 80px;
+    }
+
+    .stage-header {
+        margin-bottom: 5px;
+    }
+
+    .story-box {
+        padding: 8px;
+    }
+
+    .encounter-area,
+    .rooftop-game,
+    .web-trap-game,
+    .spider-sense-game,
+    .boss-battle {
+        height: 180px;
+    }
+
+    .spider-sense {
+        bottom: 5px;
+    }
+
+    .final-content {
+        padding-top: 20px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
